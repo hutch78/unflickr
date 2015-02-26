@@ -23,5 +23,7 @@
     "multer": "^0.1.7",
     "serve-favicon": "^2.2.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "busboy": "^0.2.9"
+  }
 }

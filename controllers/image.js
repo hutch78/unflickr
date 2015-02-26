@@ -1,30 +1,75 @@
 var fs = require('fs');
 var path = require('path');
 var Models = require('../models');
+
 //handles all requests for our image app
 module.exports = {
 	index: function(req, res) {
 
-		console.log(req);
-
 		var viewModel = {
-			image: {}
+			image: {},
+			comments: {}
+
 		};
+
+
 		//find the image using the url 
 		Models.Image.findOne({ filename: { $regex: req.params.image_id } },
 			function (err, image) {
 				if (err) { throw err; }
 				if (image) {
+
+					// console.log(image);
+
 					//if found, adds to views
 					image.views++;
+
 					//saves the image to use as the view
 					viewModel.image = image;
+
+
+
+					Models.Comment.find({ image_id: req.params.image_id }, 
+						function(err, comments){
+							if(err){
+								console.log(err)
+							} else {
+
+								// console.log('\nThe Comments:\n');
+								// console.log(comments);
+								// console.log('\n\n');
+
+
+								viewModel.comments = comments;
+								console.log(comments.length);
+
+
+								/* =- =- =- =- =- -= -= =- - =- =- -= = -= - =- =- =- =- = -= -= =- = -= - = -= - =-= 
+
+									Start by passing only one image at a time and see if the view can access it
+
+								 =- =- =- =- =- -= -= =- - =- =- -= = -= - =- =- =- =- = -= -= =- = -= - = -= - =-= */
+
+
+								console.log(typeof(comments));
+
+
+								// console.log(viewModel);
+
+
+							}
+						});
+
 					//save the updated model
 					image.save();
-					res.render('image',viewModel);
+
+					res.render('image', viewModel);
+
 				} else {
+
 					//if no image, return to index
 					res.redirect('/');
+
 				}
 			});
 		},
@@ -112,8 +157,32 @@ module.exports = {
 	},
 	comment: function(req, res) {
 		
-		console.log(req.body);
-		console.log(req.params.image_id);
+		// console.log(req.body);
+		// console.log(req.params.image_id);
+
+		var saveComment = function(){
+
+			//creates the image model with details from the request (req)
+			var newComment = new Models.Comment({
+				image_id: req.params.image_id,
+				comment: req.body.comment,
+				name: req.body.name,
+				email: req.body.email
+			});
+
+			//saves the image - mongoose function
+			newComment.save(function(err, comment) {
+				if (err) { 
+					throw err; 
+				} else {
+					console.log('Successful Comment');
+					res.redirect('/images/'+newComment.image_id);
+				}
+			});
+		}
+
+		//  Call the function above
+		saveComment();
 
 
 	}
