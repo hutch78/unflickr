@@ -8,7 +8,7 @@ module.exports = {
 
 		var viewModel = {
 			image: {},
-			comments: {}
+			comment: {}
 
 		};
 
@@ -27,41 +27,48 @@ module.exports = {
 					//saves the image to use as the view
 					viewModel.image = image;
 
+					Models.Comment.findOne({},function(err, comment){
+						if(comment){
+							viewModel.comment = comment;
+							console.log(viewModel);
+						} else {
+							console.log('no comment found...')
+						}
+					});
+
+					// Models.Comment.find({ image_id: req.params.image_id },
+					// 	function(err, comments){
+					// 		if(err){
+					// 			console.log(err)
+					// 		} else {
+
+					// 			// console.log('\nThe Comments:\n');
+					// 			// console.log(comments);
+					// 			// console.log('\n\n');
 
 
-					Models.Comment.find({ image_id: req.params.image_id }, 
-						function(err, comments){
-							if(err){
-								console.log(err)
-							} else {
-
-								// console.log('\nThe Comments:\n');
-								// console.log(comments);
-								// console.log('\n\n');
+					// 			viewModel.comments = comments;
+					// 			console.log(comments.length+' comments found');
 
 
-								viewModel.comments = comments;
-								console.log(comments.length);
+					// 			 =- =- =- =- =- -= -= =- - =- =- -= = -= - =- =- =- =- = -= -= =- = -= - = -= - =-= 
+
+					// 				Start by passing only one image at a time and see if the view can access it
+
+					// 			 =- =- =- =- =- -= -= =- - =- =- -= = -= - =- =- =- =- = -= -= =- = -= - = -= - =-= 
 
 
-								/* =- =- =- =- =- -= -= =- - =- =- -= = -= - =- =- =- =- = -= -= =- = -= - = -= - =-= 
-
-									Start by passing only one image at a time and see if the view can access it
-
-								 =- =- =- =- =- -= -= =- - =- =- -= = -= - =- =- =- =- = -= -= =- = -= - = -= - =-= */
+					// 			console.log(typeof(comments));
 
 
-								console.log(typeof(comments));
+					// 			// console.log(viewModel);
 
 
-								// console.log(viewModel);
-
-
-							}
-						});
+					// 		}
+					// 	});
 
 					//save the updated model
-					image.save();
+					// image.save();
 
 					res.render('image', viewModel);
 
