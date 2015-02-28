@@ -1,0 +1,148 @@
+/* =- -= =- -= =- -= =--= =- 
+
+	Global
+
+=- -= =--= =- -= = --= =- -= =- */
+
+* { 
+	-webkit-box-sizing: border-box; 
+	-moz-box-sizing:    border-box; 
+	box-sizing:         border-box; 
+}
+
+/* =- -= =- -= =- -= =--= =- 
+
+	Colorz
+
+=- -= =--= =- -= = --= =- -= =- */
+
+
+@accent1: #FF5722;
+
+@neutral1: #212121;
+
+/* =- -= =- -= =- -= =--= =- 
+
+	Dat Grid
+
+=- -= =--= =- -= = --= =- -= =- */
+.rowMachine(@numPerRow, @margin) {
+  width: ((100% - ((@numPerRow - 1) * @margin)) / @numPerRow);
+  &:nth-child(n) {
+    margin-right: @margin;
+  }
+  &:nth-child(@{numPerRow}n) {
+    margin-right: 0;
+  }
+}
+
+
+/* =- -= =- -= =- -= =--= =- 
+
+	Typog
+
+=- -= =--= =- -= = --= =- -= =- */
+
+.lust {
+	font-family: "lust-didone",sans-serif;
+	font-style: normal;
+	font-weight: 400;
+}
+
+.prox(@weight) {
+	font-family: "proxima-nova-alt",sans-serif;
+	font-style: normal;
+	font-weight: @weight;
+}
+
+
+/* =- -= =- -= =- -= =--= =- 
+
+	Default Transition
+
+=- -= =--= =- -= = --= =- -= =- */
+
+/* .transition(all,2s); */
+.transition(@what: all, @time: 0.2s, @transition: ease-in-out) {
+	-webkit-transition: @what @time @transition;
+	-moz-transition:    @what @time @transition;
+	-ms-transition:     @what @time @transition;
+	-o-transition:      @what @time @transition;
+	transition:         @what @time @transition;
+}
+
+
+
+/* =- -= =- -= =- -= =--= =- 
+
+	Su- su- pseudio
+
+=- -= =--= =- -= = --= =- -= =- */
+.pseudo {
+	content: '';
+	display: block;
+	position: absolute;
+}
+
+/* =- -= =- -= =- -= =--= =- 
+
+	Stretch Armstrong
+
+=- -= =--= =- -= = --= =- -= =- */
+.stretch {
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+}
+
+.wallpaper {
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+/* =- -= =- -= =- -= =--= =- 
+
+	Dat Ease!!!
+
+=- -= =--= =- -= = --= =- -= =- */
+
+@cubes1: .17,.92,.66,.97; // slow out
+@cubes2: 1.000, 0.360, 0.540, 0.930; // slow in
+
+.ease1 {
+	-webkit-transition: all 400ms cubic-bezier(@cubes1); 
+	   -moz-transition: all 400ms cubic-bezier(@cubes1); 
+	     -o-transition: all 400ms cubic-bezier(@cubes1); 
+	        transition: all 400ms cubic-bezier(@cubes1); /* custom */
+
+	-webkit-transition-timing-function: cubic-bezier(@cubes1); 
+	   -moz-transition-timing-function: cubic-bezier(@cubes1); 
+	     -o-transition-timing-function: cubic-bezier(@cubes1); 
+	        transition-timing-function: cubic-bezier(@cubes1); /* custom */
+}
+
+.ease2 {
+	-webkit-transition: all 400ms cubic-bezier(@cubes2); 
+	   -moz-transition: all 400ms cubic-bezier(@cubes2); 
+	     -o-transition: all 400ms cubic-bezier(@cubes2); 
+	        transition: all 400ms cubic-bezier(@cubes2); /* custom */
+
+	-webkit-transition-timing-function: cubic-bezier(@cubes2); 
+	   -moz-transition-timing-function: cubic-bezier(@cubes2); 
+	     -o-transition-timing-function: cubic-bezier(@cubes2); 
+	        transition-timing-function: cubic-bezier(@cubes2); /* custom */
+}
+
+/* =- -= =- -= =- -= =--= =- 
+
+	Box Shadow
+
+=- -= =--= =- -= = --= =- -= =- */
+.box-shadow1 {
+
+	-webkit-box-shadow: 12px 9px 29px -12px rgba(0,0,0,0.39);
+	-moz-box-shadow: 12px 9px 29px -12px rgba(0,0,0,0.39);
+	box-shadow: 12px 9px 29px -12px rgba(0,0,0,0.39);
+}

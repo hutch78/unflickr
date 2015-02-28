@@ -26,6 +26,9 @@
   "devDependencies": {
     "MD5": "^1.2.1",
     "async": "^0.9.0",
-    "busboy": "^0.2.9"
+    "busboy": "^0.2.9",
+    "grunt": "~0.4.5",
+    "grunt-contrib-less": "~0.11.0",
+    "grunt-contrib-watch": "~0.6.1"
   }
 }

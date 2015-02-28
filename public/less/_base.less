@@ -1,0 +1,397 @@
+/******************************************************************
+
+MY GUESTBOOK APP
+
+******************************************************************/
+
+/* =- -= =- -= =- -= =--= =- -= =- -= =--= =-  -= =- -= =--= =- -= =--= =- 
+
+	Bootstrap Overrides :( ---------------------------------------------------
+
+=- -= =--= =- -= = --= =- -= =--= =-  -= =- -= =--= =- -= =- -= =- */
+
+.panel {
+	border: none;
+}
+
+
+/* =- -= =- -= =- -= =--= =- -= =- -= =--= =-  -= =- -= =--= =- -= =--= =- 
+
+	Global ---------------------------------------------------
+
+=- -= =--= =- -= = --= =- -= =--= =-  -= =- -= =--= =- -= =- -= =- */
+
+.center {
+	max-width: 1200px;
+	margin: 0 auto;
+	overflow: hidden;
+	position: relative;
+}
+
+.wrap {
+	padding-left: 30px;
+	overflow: hidden;
+	position: relative;
+	margin-top:200px;
+}
+
+/* =- -= =- -= =- -= =--= =- -= =- -= =--= =-  -= =- -= =--= =- -= =--= =- 
+
+	Typog ---------------------------------------------------
+
+=- -= =--= =- -= = --= =- -= =--= =-  -= =- -= =--= =- -= =- -= =- */
+
+h1, h2, h3 {
+	.prox(900);
+	text-transform: uppercase;
+	color: @accent1;
+	
+}
+
+h1 {
+	font-size: 72px;
+}
+
+h2 {
+	font-size: 36px;
+}
+
+h3 {
+	font-size: 24px;
+}
+
+p {
+	.prox(100);
+	font-size: 24px;
+}
+
+label {
+	.prox(900);
+	text-transform: uppercase;
+	font-size: 36px;
+	color: @accent1;
+	&:focus {
+		color: black;
+	}
+}
+
+.timestamp {
+	font-size: 14px;
+	text-transform: uppercase;
+	.prox(100);
+}
+
+.cta-btn {
+	display: block;
+	text-decoration: none;
+	border: rgba(0,0,0,0);
+	background: @accent1;
+	.ease1;
+	border-right: 5px;
+	
+	cursor: pointer;
+
+	span {
+		color: white;
+		display: block;
+		letter-spacing: 1px;
+		padding: 10px 20px;
+		font-size: 16px;
+		.prox(700);
+		text-transform: uppercase;
+		.ease1;
+	}
+
+	&:hover {
+		background: black;
+		// color: #428BCA;
+	}
+	i {
+		.ease1;
+	}
+}
+
+.home-link {
+	display: inline-block;
+	background: @accent1;
+	margin-bottom: 40px;
+	border: 1px solid rgba(0,0,0,1);
+	
+	text-decoration: none;
+
+	span {
+		color: #FF5722;
+		display: block;
+		padding: 10px 20px 10px 30px;
+		.prox(700);
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		.ease2;
+	}
+
+	i {
+		.ease2;
+	}
+
+	&:hover {
+		border: 1px solid rgba(0,0,0,.3);
+		background: #FF5722;
+		span {
+			color: #428BCA;
+		}
+	}
+}
+
+.the-end {
+	.prox(900);
+	text-transform: uppercase;
+	font-size: 48px;
+	margin: 40px 0;
+}
+
+.fa-move-left {
+	i {
+		margin-right: 10px;
+		-webkit-transform: translate3D(0, 0, 0);
+		-moz-transform: translate3D(0, 0, 0);
+		-o-transform: translate3D(0, 0, 0);
+		transform: translate3D(0, 0, 0);
+	}
+
+	&:hover {
+		i {
+			-webkit-transform: translate3D(-5px, 0, 0);
+			-moz-transform: translate3D(-5px, 0, 0);
+			-o-transform: translate3D(-5px, 0, 0);
+			transform: translate3D(-5px, 0, 0);
+		}
+	}
+}
+
+.fa-move-right {
+	i {
+		margin-left: 10px;
+		-webkit-transform: translate3D(0, 0, 0);
+		-moz-transform: translate3D(0, 0, 0);
+		-o-transform: translate3D(0, 0, 0);
+		transform: translate3D(0, 0, 0);
+	}
+
+	&:hover {
+		i {
+			-webkit-transform: translate3D(5px, 0, 0);
+			-moz-transform: translate3D(5px, 0, 0);
+			-o-transform: translate3D(5px, 0, 0);
+			transform: translate3D(5px, 0, 0);
+		}
+	}
+}
+
+
+/* =- -= =- -= =- -= =--= =- -= =- -= =--= =-  -= =- -= =--= =- -= =--= =- 
+
+	Header ---------------------------------------------------
+
+=- -= =--= =- -= = --= =- -= =--= =-  -= =- -= =--= =- -= =- -= =- */
+
+header {
+	padding-left: 30px;
+	width: 100%;
+	position: fixed;
+	background: white;
+	z-index:1000;
+	top: 0;
+	height: 200px;
+	// border-bottom: 1px solid #FF5722;
+	.box-shadow1;
+
+	.cta-btn {
+		position: absolute;
+		top: 75px;
+		right: 77px;
+
+	}
+
+	.title-sub {
+		margin-top: 30px;
+		margin-bottom: 0;
+		.prox(100);
+		color: rgba(0,0,0,.5);
+		text-transform: uppercase;
+		font-size: 18px;
+		letter-spacing: 4px;
+	}
+
+	h1 {
+		margin-top: 0;
+	}
+
+
+}
+
+
+/* =- -= =- -= =- -= =--= =- -= =- -= =--= =-  -= =- -= =--= =- -= =--= =- 
+
+	Form Stuff ---------------------------------------------------
+
+=- -= =--= =- -= = --= =- -= =--= =-  -= =- -= =--= =- -= =- -= =- */
+
+#send-message {
+	border: rgba(0,0,0,0);
+	background: #428BCA;
+	.ease1;
+	border-right: 5px;
+	
+	cursor: pointer;
+
+	span {
+		color: white;
+		display: block;
+		letter-spacing: 1px;
+		padding: 10px 20px;
+		font-size: 16px;
+		.prox(700);
+		text-transform: uppercase;
+		.ease1;
+	}
+
+	&:hover {
+		background: #FF5722;
+		// color: #428BCA;
+	}
+	i {
+		.ease1;
+	}
+}
+
+input, textarea, button {
+	outline: none!important;
+	resize: none!important;
+}
+
+input[type="text"], textarea {
+	width: 100%;
+	padding: 20px;
+	.prox(100);
+	font-size: 20px;
+	.ease1;
+	border: none;
+	color: @accent1;
+	border-bottom: 2px dotted rgba(0,0,0,0);
+	transform: translateZ(0);
+
+	.box-shadow1;
+	margin: 15px 0;
+	border-radius: 8px;
+
+	&:focus {
+		border-bottom: 2px dotted rgba(0,0,0,.3);
+
+		-webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.39);
+		-moz-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.39);
+		box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.39);
+	}
+}
+
+textarea {
+	height: 200px;
+	
+}
+
+.sub-row {
+	padding: 0;
+	text-align: right;
+
+}
+
+
+/* =- -= =- -= =- -= =--= =- -= =- -= =--= =-  -= =- -= =--= =- -= =--= =- 
+
+	Layout ---------------------------------------------------
+
+=- -= =--= =- -= = --= =- -= =--= =-  -= =- -= =--= =- -= =- -= =- */
+
+.message-board {
+	float: left;
+	width: 700px;
+	height: 100%;
+	overflow-y: auto;
+	position: fixed;
+	padding: 40px 40px 200px 10px;
+}
+
+.message-board::-webkit-scrollbar { width: 0 !important; }
+.message-board { -ms-overflow-style: none!important; }
+.message-board { overflow: -moz-scrollbars-none!important; }
+
+aside {
+	float: right;
+	width: 40%;
+	padding: 40px;
+}
+
+
+.message-container {
+	width: 519px;
+	float: left;
+	margin-right: 100px;
+
+	&.comments-page {
+	}
+}
+.message-form {
+	margin-top: 20px;
+	float: left;
+}
+
+.a-comment {
+	overflow: hidden;
+	margin-bottom: 60px;
+	border-top: 1px dashed rgba(0,0,0,.3);
+	p {
+		margin: 30px 15px 0 0;
+		font-size: 30px;
+	}
+
+	.author-line {
+		display: block;
+		margin-top:20px;
+		margin-bottom: 10px;	
+		.prox(900);
+		text-transform: uppercase;
+		font-size: 13px;
+		letter-spacing: 4px;
+		color: @neutral1;
+	}
+}
+
+
+.comments-page {
+	width: 100%;
+	p {
+		font-size: 46px;
+		margin:20px 0;
+
+	}
+
+	.a-comment {
+		margin-bottom: 62px;
+		padding-top: 22px;
+
+		.body-text {
+			margin-bottom: 40px;
+			width: 100%;
+		}
+
+		.author-line, .timestamp {
+			display: block;
+			text-align: right;
+			padding-right: 80px;
+		}
+
+		@media screen and (min-width: 768px){
+			float: left;
+			.rowMachine(2, 5%);
+		}
+	}
+}
