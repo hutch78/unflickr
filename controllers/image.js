@@ -1,6 +1,8 @@
 var fs = require('fs');
 var path = require('path');
 var Models = require('../models');
+var md5 = require('MD5');
+var stats  = require('../helpers/stats');
 
 //handles all requests for our image app
 module.exports = {
@@ -8,7 +10,8 @@ module.exports = {
 
 		var viewModel = {
 			image: {},
-			comment: {}
+			comments: {},
+			sidebar: {}
 
 		};
 
@@ -27,50 +30,48 @@ module.exports = {
 					//saves the image to use as the view
 					viewModel.image = image;
 
-					Models.Comment.findOne({},function(err, comment){
-						if(comment){
-							viewModel.comment = comment;
-							console.log(viewModel);
-						} else {
-							console.log('no comment found...')
-						}
-					});
+					Models.Comment.find({ image_id: req.params.image_id },
+						function(err, comments){
+							if(err){
+								console.log(err)
+							} else {
 
-					// Models.Comment.find({ image_id: req.params.image_id },
-					// 	function(err, comments){
-					// 		if(err){
-					// 			console.log(err)
-					// 		} else {
+								for (var key in comments) {
 
-					// 			// console.log('\nThe Comments:\n');
-					// 			// console.log(comments);
-					// 			// console.log('\n\n');
+								  console.log('We Got One Captain!');
+
+								  if (comments.hasOwnProperty(key)) {
+								    // console.log(key + " -> " + comments[key]);
+
+								    var the_email = comments[key].email.toLowerCase();
+
+								    var hashed_email = md5(the_email);
+								    
+								    comments[key].hashed_email = hashed_email;
+
+								  } else {
+								  	console.log('!hasOwnProperty');
+								  }
+								}
+
+								console.log('\nThe Comments:\n');
+								// console.log(comments);
+								console.log('\n\n');
+
+								viewModel.comments = comments;
+								console.log(comments.length+' comments found');
+
+								stats(viewModel, function(viewModel){
+									res.render('image', viewModel);
+								});
 
 
-					// 			viewModel.comments = comments;
-					// 			console.log(comments.length+' comments found');
+							}
+						});
 
+					// save the updated model
+					image.save();
 
-					// 			 =- =- =- =- =- -= -= =- - =- =- -= = -= - =- =- =- =- = -= -= =- = -= - = -= - =-= 
-
-					// 				Start by passing only one image at a time and see if the view can access it
-
-					// 			 =- =- =- =- =- -= -= =- - =- =- -= = -= - =- =- =- =- = -= -= =- = -= - = -= - =-= 
-
-
-					// 			console.log(typeof(comments));
-
-
-					// 			// console.log(viewModel);
-
-
-					// 		}
-					// 	});
-
-					//save the updated model
-					// image.save();
-
-					res.render('image', viewModel);
 
 				} else {
 
@@ -136,7 +137,8 @@ module.exports = {
 		console.log(req);
 
 		var viewModel = {
-			image: {}
+			image: {},
+			sidebar: {}
 		};
 		//find the image using the url 
 		Models.Image.findOne({ filename: { $regex: req.params.image_id } },
@@ -152,7 +154,9 @@ module.exports = {
 					//save the updated model
 					image.save();
 
-					res.render('image',viewModel);
+					stats(viewModel, function(viewModel){
+						res.render('image',viewModel);
+					});
 					
 				} else {
 					//if no image, return to index

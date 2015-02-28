@@ -21,19 +21,6 @@
     </div>
 </div>
 
-
-<ul class="media-list">
-    <li class="media">
-        <p>
-            {{ comment.comment }}
-        </p>
-        <p>
-            {{ comment.name }}
-        </p>
-    </li>
-</ul>
-
-
 <div class="panel panel-default">
     <div class="panel-heading">
         <div class="row">
@@ -87,11 +74,15 @@
             {{#each comments}}
             <li class="media">
                 <a class="pull-left" href="#">
-                    <img class="media-object img-circle" src="http://www.gravatar.com/avatar/{{gravatar}}?d=monsterid&s=45">
+                    {{#if hashed_email}}
+                        <img class="media-object img-circle" src="http://www.gravatar.com/avatar/{{ hashed_email }}">
+                    {{else}}
+                        <img class="media-object img-circle" src="http://www.gravatar.com/avatar/{{ gravatar }}?d=monsterid&s=45">
+                    {{/if}}
                 </a>
                 <div class="media-body">
                     {{ comment }}
-                    <br/><strong class="media-heading">{{ name }}</strong> <small class="text-muted">{{ timeago timestamp }}</small>
+                    <br/><strong class="media-heading">{{ name }}</strong> - {{ email }} <small class="text-muted">{{ timeago timestamp }}</small>
                 </div>
             </li>
             {{/each}}
