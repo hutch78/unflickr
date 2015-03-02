@@ -1,25 +1,28 @@
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">
-            Stats
-        </h3>
-    </div>
-    <div class="panel-body">
-        <div class="row">
-            <div class="col-md-2 text-left">Images:</div>
-            <div class="col-md-10 text-right">{{ sidebar.stats.images }}</div>
+<div id="stats-wrapper">
+    <div class="inner">
+        <div>
+            <h3 class="section-heading">
+                <i class="fa fa-bar-chart"></i>
+                Stats
+            </h3>
         </div>
-        <div class="row">
-            <div class="col-md-2 text-left">Comments:</div>
-            <div class="col-md-10 text-right">{{ sidebar.stats.comments }}</div>
-        </div>
-        <div class="row">
-            <div class="col-md-2 text-left">Views:</div>
-            <div class="col-md-10 text-right">{{ sidebar.stats.views }}</div>
-        </div>
-        <div class="row">
-            <div class="col-md-2 text-left">Likes:</div>
-            <div class="col-md-10 text-right">{{ sidebar.stats.likes }}</div>
+        <div class="stats-panel">
+            <div class="stats-col one">
+                <h5>Images:</h5>
+                <span>{{ sidebar.stats.images }}</span>
+            </div>
+            <div class="stats-col two">
+                <h5>Comments:</h5>
+                <span>{{ sidebar.stats.comments }}</span>
+            </div>
+            <div class="stats-col three">
+                <h5>Likes:</h5>
+                <span>{{ sidebar.stats.likes }}</span>
+            </div>
+            <div class="stats-col four">
+                <h5>Total Views:</h5>
+                <span>{{ sidebar.stats.views }}</span>
+            </div>
         </div>
     </div>
 </div>

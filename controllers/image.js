@@ -171,6 +171,7 @@ module.exports = {
 		// console.log(req.body);
 		// console.log(req.params.image_id);
 
+
 		var saveComment = function(){
 
 			//creates the image model with details from the request (req)

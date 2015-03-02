@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <title>Not Quite Flickr</title>
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="/public/css/styles.css">
 
     
@@ -12,40 +12,50 @@
 
     </head>
     <body>
-        <div class="page-header">
-            <div class="container">
-                <div class="col-md-6">
-                    <h1><a href="/">Not Quite Flickr</a></h1>
+
+        <article id="wrap">
+
+            {{!-- Header --}}
+            <header id="header">
+                <div class="center">
+                    <div class="main-heading">
+                        <h1 class="main"><a id="logo" href="/">Unflickr</a></h1>
+                        <h2 class="sub-heading">By: Jeremy Hutchcraft</h2>
+                    </div>
+
+                    {{> stats this }}
                 </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-8">
+            </header>
+
+
+
+            <section id="main">
+
+                <div class="body-wrap">
                     {{{body}}}
                 </div>
-                <div class="col-sm-4">
-                    {{> stats this }}
-
+        {{!--         <aside class="sidebar">
+                 
                     {{> popular this }}
 
                     {{> comments this }}
+                </aside> --}}
+
+            </section>
+
+
+
+            <footer id="footer">
+                <div class="center">
+                    
                 </div>
-            </div>
-        </div>
-        <div style="border-top: solid 1px #eee; padding-top: 1em;">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12 text-center">
-                        <p class="text-muted">by so and so</p>
-                        <p class="text-center">
-                            <i class="fa fa-twitter-square fa-2x text-primary"></i>
-                            <i class="fa fa-facebook-square fa-2x text-primary"></i>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+            </footer>
+            
+        </article>
+
+
+
+
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script type="text/javascript" src="/public/js/scripts.js"></script>
     </body>

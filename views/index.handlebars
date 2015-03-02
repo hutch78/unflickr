@@ -1,51 +1,85 @@
-<div class="panel panel-primary">
-	<div class="panel-heading">
-		<h3 class="panel-title">
-			Upload an image
-		</h3>
-	</div>
-	<form method="post" action="/images" enctype="multipart/form-data">
-		<div class="panel-body form-horizontal">
-			<div class="form-group col-md-12">
-				<label class="col-sm-2 control-label" for="file">
-					Browse:
-				</label>
-				<div class="col-md-10">
-					<input class="form-control" type="file" name="file">
-				</div>
-			</div>
-			<div class="form-group col-md-12">
-				<label class="col-md-2 control-label" for="title">
-					Title:
-				</label>
-				<div class="col-md-10">
-					<input class="form-control" type="text" name="title">
-				</div>
-			</div>
-			<div class="form-group col-md-12">
-				<label class="col-md-2 control-label" for="description">
-					Description:
-				</label>
-				<div class="col-md-10">
-					<textarea class="form-control" name="description" rows="2"></textarea>
-				</div>
-				<div class="form-group col-md-12">
-					<div class="col-md-12 text-right">
-						<button type="submit" id="login-btn" class-"btn btn-success" type="button"><i class="fa fa-cloud-upload "></i> Upload Image</button>
-					</div>
-				</div>
-			</div>
-		</form>
-	</div>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title">
-				Newest Iamges
-			</h3>
-		</div>
-		<div class="panel-body">
-			{{#each images}}
-				<div class="col-md-4 text-center" style="padding-bottom:1em;"><a href="/images/{{ uniqueID }}"><img src="/public/upload/{{filename}}" alt="{{title}}" class="img-thumbnail"></a></div>
+<div id="content" class="home">
+
+
+	<div class="center">
+		<div class="panel panel-default">
+			
+			<div class="tile-section">
+				{{#each images}}
+					<a class="a-tile" href="/images/{{ uniqueID }}" style="background-image: url('/public/upload/{{filename}}');">
+						<div class="edit-row">
+							<div class="edit-btn">
+								<i class="fa fa-heart"></i>
+							</div>
+						</div>
+					</a>
 				{{/each}}
 			</div>
 		</div>
+
+
+		<div id="upload-form">
+			
+			<form method="post" action="/images" enctype="multipart/form-data">
+				
+				<fieldset>
+
+					<legend>Upload</legend>
+
+					<div class="inner">
+
+						<div class="left">
+
+							<div class="form-row">
+								<label class="form-label" for="title">
+									Title:
+									<div>
+										<input class="form-control" type="text" name="title">
+									</div>
+								</label>
+							</div>
+
+							<div class="form-row">
+								<label class="form-label" for="description">
+									Description:
+									<div>
+										<textarea class="form-control" name="description" rows="2"></textarea>
+									</div>
+								</label>
+							</div>
+							
+						</div>
+
+						<div class="right">
+							<div class="form-row">
+								<label class="form-label" for="file">
+									Browse:
+									<div>
+										<input class="form-control" type="file" name="file">
+									</div>
+								</label>
+							</div>
+						</div>
+
+						<div class="clear"></div>
+
+
+						<div class="sub-row">
+							<button type="submit" id="login-btn" class="cta-btn" type="button">
+								<span>
+									<i class="fa fa-cloud-upload "></i> 
+									Upload Image
+								</span>
+							</button>
+						</div>
+						
+					</div>{{!-- end inner --}}
+
+				</fieldset>
+
+			</form>{{!-- end form --}}
+
+		</div>
+
+		
+	</div>
