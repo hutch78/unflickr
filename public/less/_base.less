@@ -274,7 +274,7 @@ header {
 
 	.a-tile {
 		position: relative;
-		padding-bottom: 17%;
+		padding-bottom: 27%;
 		background-size: cover;
 		.rowMachine(3, 3%);
 		margin-bottom: 3%;
@@ -355,8 +355,33 @@ legend {
 
 fieldset {
 	border-color: white;
-	padding: 80px;
+	padding: 40px;
 	border-radius: 10px;
+
+}
+
+.browse-box {
+	background-color: rgba(255,255,255,0);
+	cursor: pointer;
+	display: table-cell;
+	width: 200px;
+	height: 200px;
+	border: 2px dashed white;
+	text-align: center;
+	vertical-align: middle;
+	.ease2;
+	font-size: 70px;
+
+	&:hover {
+		background-color: rgba(255,255,255,1);
+		color: #3A4046;
+	}
+}
+
+.form-control {
+	&.file {
+		display: none;
+	}
 }
 
 form {
@@ -384,7 +409,15 @@ form {
 		margin-bottom: 20px;
 	}
 
+	.right {
+		padding-left: 40px;
+	}
+
 	.sub-row {
 		clear: left;
+	}
+
+	.outer {
+		margin-top: 20px;
 	}
 }
