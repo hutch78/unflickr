@@ -9,148 +9,124 @@
                 <img src="/public/upload/{{image.filename}}" class="img-thumbnail">
             </div>
         </div>
-        <div class="panel-footer">
-            <div class="row">
-                <div class="col-md-8">
-                <form action="/images/{{ image.filename }}/like" method="POST">
-                    <button class="btn btn-success" id="btn-like" data-id="{{ image.uniqueID }}"><i class="fa fa-heart"> Like</i></button>
+
+        <div class="bottom-bar">
+            
+            <div class="like-btn">
+                <form class="like-form" action="/images/{{ image.uniqueID }}/like" method="POST" data-id="{{ image.uniqueID }}">
+                    <button class="cta-btn">
+                        <span><i class="fa fa-heart"> Like</i></span>
+                    </button>
                 </form>
-                    <strong class="likes-count">{{ image.likes }}</strong> &nbsp; - &nbsp; <i class="fa fa-eye"></i> <strong>{{ image.views }}</strong>
-                    &nbsp; - &nbsp; Posted: <em class="text-muted">{{ timeago image.timestamp }}</em>
-                </div>
             </div>
+
+            <div class="info-row">
+              <div class="views">
+                  <p>
+                      <i class="fa fa-eye"></i>{{ image.views }}
+                  </p>
+              </div>
+              <div class="likes">
+                  <p>
+                      <i class="fa fa-heart"></i><span id="num-likes">{{ image.likes }}</span>
+                  </p>
+              </div>
+              <div class="time">
+                  <p>
+                      <i class="fa fa-time"></i>{{ timeago image.timestamp }}
+                  </p>
+              </div>
+
+              <div class="clear"></div>
+            </div>
+
         </div>
+    
     </div>
+    
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <div class="row">
-                <div class="col-md-8">
-                    <strong class="panel-title">Comments</strong>
-                </div>
-               {{!--  <div class="col-md-4 text-right">
-                    <button class="btn btn-default btn-sm" id="btn-comment" data-id="{{ image.uniqueId }}"><i class="fa fa-comments-o"> Post Comment...</i></button>
-                </div> --}}
-            </div>
-        </div>
-        <div class="panel-body">
-            <blockquote id="post-comment">
-                <div class="row">
+    <div id="comment-form-wrapper">
+        <form id="comments-form" method="POST" action="/images/{{ image.uniqueID }}/comment">
 
-                <form method="POST" action="/images/{{ image.uniqueID }}/comment">
+            <fieldset>
 
+                <legend>Comment</legend>
 
-                    <fieldset>
+                <div class="inner">
 
-                        <legend>Comment</legend>
-
-                        <div class="inner">
-
-
-                                <div class="form-row">
-                                    <label class="form-label" for="title">
-                                        Name:
-                                        <div>
-                                            <input class="form-control" type="text" name="name">
-                                        </div>
-                                    </label>
-                                </div>
-
-                                <div class="form-row">
-                                    <label class="form-label" for="title">
-                                        Email:
-                                        <div>
-                                             <input class="form-control" type="text" name="email">
-                                        </div>
-                                    </label>
-                                </div>
-
-                                <div class="form-row">
-                                    <label class="form-label" for="description">
-                                        Comment:
-                                        <div>
-                                            <textarea class="form-control" name="comment" rows="2"></textarea>
-                                        </div>
-                                    </label>
-                                </div>
-                                
-                                
-
-                                <div class="sub-row">
-                                    <button type="submit" id="login-btn" class="cta-btn" type="button">
-                                        <span>
-                                            <i class="fa fa-cloud-upload "></i> 
-                                            Post Comment
-                                        </span>
-                                    </button>
-                                </div>
-                     
-                            
-                        </div>{{!-- end inner --}}
-
-                    </fieldset>
-
-                {{!--     <div class="form-group col-sm-12">
-                        <label class="col-sm-2 control-label" for="name">Name:</label>
-                        <div class="col-sm-10">
-                            <input class="form-control" type="text" name="name">
-                        </div>
+                    <div class="form-row">
+                        <label class="form-label" for="title">
+                            Name:
+                            <div>
+                                <input class="form-control" type="text" name="name">
+                            </div>
+                        </label>
                     </div>
 
-                    <div class="form-group col-sm-12">
-                        <label class="col-sm-2 control-label" for="email">Email:</label>
-                        <div class="col-sm-10">
-                            <input class="form-control" type="text" name="email">
-                        </div>
+                    <div class="form-row">
+                        <label class="form-label" for="title">
+                            Email:
+                            <div>
+                                 <input class="form-control" type="text" name="email">
+                            </div>
+                        </label>
                     </div>
 
-                    <div class="form-group col-sm-12">
-                        <label class="col-sm-2 control-label" for="comment">Comment:</label>
-                        <div class="col-sm-10">
-                            <textarea class="form-control" name="comment" rows="2"></textarea>
-                        </div>
-                    </div> --}}
-
-
-                </form>
-
-                </div>
-
-            </blockquote>
-
-            <div id="comments-list">
-                
-            {{#each comments}}
-
-                <div class="a-comment">
-                    <div class="gravatar">
-                        {{#if hashed_email}}
-                            <img class="media-object img-circle" src="http://www.gravatar.com/avatar/{{ hashed_email }}">
-                        {{else}}
-                            <img class="media-object img-circle" src="http://www.gravatar.com/avatar/{{ gravatar }}?d=monsterid&s=45">
-                        {{/if}}
+                    <div class="form-row">
+                        <label class="form-label" for="description">
+                            Comment:
+                            <div>
+                                <textarea class="form-control" name="comment" rows="2"></textarea>
+                            </div>
+                        </label>
                     </div>
-                    <div class="comment-body">
-                           <p>
-                               {{ comment }}
-                           </p>
-                           <div class="info-row">
-                              <p> {{ name }}</strong> - {{ email }} <small class="text-muted">{{ timeago timestamp }}</p>
-                           </div>
-                    </div>
-
                     
+                    <div class="sub-row">
+                        <button type="submit" id="login-btn" class="cta-btn" type="button">
+                            <span>
+                                <i class="fa fa-cloud-upload "></i> 
+                                Post Comment
+                            </span>
+                        </button>
+                    </div>
+         
+                </div>{{!-- end inner --}}
 
-                    <div class="clear"></div>
+            </fieldset>
+
+
+        </form>
+
+    </div>
+
+
+    <div id="comments-list">
+        
+        {{#each comments}}
+
+            <div class="a-comment">
+                <div class="gravatar">
+                    {{#if hashed_email}}
+                        <img class="media-object img-circle" src="http://www.gravatar.com/avatar/{{ hashed_email }}">
+                    {{else}}
+                        <img class="media-object img-circle" src="http://www.gravatar.com/avatar/{{ gravatar }}?d=monsterid&s=45">
+                    {{/if}}
+                </div>
+                <div class="comment-body">
+                   <p>
+                       {{ comment }}
+                   </p>
+                   <div class="info-row">
+                      <p> {{ name }} - {{ email }} <small class="text-muted">{{ timeago timestamp }}</p>
+                   </div>
                 </div>
 
-            {{/each}}
-
+                <div class="clear"></div>
             </div>
 
-       
+        {{/each}}
 
-        </div>
     </div>
+
 
 </div>

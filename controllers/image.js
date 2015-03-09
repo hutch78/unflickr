@@ -134,7 +134,6 @@ module.exports = {
 		saveImage();
 	},
 	like: function(req, res) {
-		console.log(req);
 
 		var viewModel = {
 			image: {},
@@ -143,7 +142,8 @@ module.exports = {
 
 		};
 
-		console.log('image_id = '+req.params.image_id);
+		console.log(req.params);
+
 
 		//find the image using the url 
 		Models.Image.findOne({ filename: { $regex: req.params.image_id } },
@@ -162,39 +162,37 @@ module.exports = {
 					Models.Comment.find({ image_id: req.params.image_id },
 						function(err, comments){
 							if(err){
-								// console.log(err)
+								console.log(err)
 							} else {
 
 								for (var key in comments) {
 
-
 								  if (comments.hasOwnProperty(key)) {
 
 								    var the_email = comments[key].email.toLowerCase();
-
 								    var hashed_email = md5(the_email);
-								    
 								    comments[key].hashed_email = hashed_email;
 
 								  } else {
-								  	// console.log('!hasOwnProperty');
+								  	console.log('!hasOwnProperty');
 								  }
 								}
 
-								console.log('\nThe Comments:\n');
 								// console.log(comments);
-								console.log('\n\n');
 
 								viewModel.comments = comments;
 								console.log(comments.length+' comments found');
 
 								stats(viewModel, function(viewModel){
-									res.render('image',viewModel);
+									res.render('image', viewModel);
 								});
 
 
 							}
 						});
+
+					// save the updated model
+					image.save();
 
 
 					
@@ -208,10 +206,6 @@ module.exports = {
 			});
 	},
 	comment: function(req, res) {
-		
-		// console.log(req.body);
-		// console.log(req.params.image_id);
-
 
 		var saveComment = function(){
 
