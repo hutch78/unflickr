@@ -138,8 +138,13 @@ module.exports = {
 
 		var viewModel = {
 			image: {},
+			comments: {},
 			sidebar: {}
+
 		};
+
+		console.log('image_id = '+req.params.image_id);
+
 		//find the image using the url 
 		Models.Image.findOne({ filename: { $regex: req.params.image_id } },
 			function (err, image) {
@@ -154,14 +159,50 @@ module.exports = {
 					//save the updated model
 					image.save();
 
-					stats(viewModel, function(viewModel){
-						res.render('image',viewModel);
-					});
+					Models.Comment.find({ image_id: req.params.image_id },
+						function(err, comments){
+							if(err){
+								// console.log(err)
+							} else {
+
+								for (var key in comments) {
+
+
+								  if (comments.hasOwnProperty(key)) {
+
+								    var the_email = comments[key].email.toLowerCase();
+
+								    var hashed_email = md5(the_email);
+								    
+								    comments[key].hashed_email = hashed_email;
+
+								  } else {
+								  	// console.log('!hasOwnProperty');
+								  }
+								}
+
+								console.log('\nThe Comments:\n');
+								// console.log(comments);
+								console.log('\n\n');
+
+								viewModel.comments = comments;
+								console.log(comments.length+' comments found');
+
+								stats(viewModel, function(viewModel){
+									res.render('image',viewModel);
+								});
+
+
+							}
+						});
+
+
+					
 					
 				} else {
 					//if no image, return to index
 
-					console.log('\nImage Not FOund Bro!\n');
+					// console.log('\nImage Not FOund Bro!\n');
 					res.redirect('/');
 				}
 			});
@@ -187,7 +228,7 @@ module.exports = {
 				if (err) { 
 					throw err; 
 				} else {
-					console.log('Successful Comment');
+					// console.log('Successful Comment');
 					res.redirect('/images/'+newComment.image_id);
 				}
 			});

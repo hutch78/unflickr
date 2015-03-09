@@ -3,8 +3,12 @@
 
 	<div class="center">
 		<div class="panel panel-default">
+		
+			<h2 class="heading-line"><span>All Images</span></h2>
 			
 			<div class="tile-section">
+
+
 				{{#each images}}
 					<a class="a-tile" href="/images/{{ uniqueID }}" style="background-image: url('/public/upload/{{filename}}');">
 						<div class="edit-row">
@@ -90,3 +94,18 @@
 
 		
 	</div>
+
+
+	<script>
+
+
+
+
+			jQuery(document).ready(function($){
+
+
+				console.log('/images/{{image_id}}/like');
+
+			});
+
+	</script>
