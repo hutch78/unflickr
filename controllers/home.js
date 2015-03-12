@@ -1,6 +1,7 @@
 //takes the browser's request and lets us send back a page or other information
 var imageModel = require('../models').Image;
 var stats  = require('../helpers/stats');
+var latest_comment  = require('../helpers/latest_comment');
 
 module.exports = {
 
@@ -9,7 +10,8 @@ module.exports = {
 		
 		var viewModel = {
 			images: {},
-			sidebar: {}
+			sidebar: {},
+			latest_comment: {}
 		}
 
 		imageModel.find(function(err, images) {
@@ -17,12 +19,15 @@ module.exports = {
 			viewModel.images = images;
 
 			stats(viewModel, function(viewModel){
-				res.render('index', viewModel);
+				latest_comment(viewModel, function(viewModel){
+
+					// console.log(viewModel);
+
+					res.render('index', viewModel);
+				})
 			})
         	
         });
-
-	//	res.render('index',viewModel);
 
 	}
 };

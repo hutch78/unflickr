@@ -22,26 +22,22 @@ module.exports = {
 				if (err) { throw err; }
 				if (image) {
 
-					// console.log(image);
-
 					//if found, adds to views
 					image.views++;
 
 					//saves the image to use as the view
 					viewModel.image = image;
 
-					Models.Comment.find({ image_id: req.params.image_id },
-						function(err, comments){
+					Models.Comment.find({ image_id: req.params.image_id })
+						.sort({timestamp: -1})
+						.exec(function(err, comments){
 							if(err){
 								console.log(err)
 							} else {
 
 								for (var key in comments) {
 
-								  console.log('We Got One Captain!');
-
 								  if (comments.hasOwnProperty(key)) {
-								    // console.log(key + " -> " + comments[key]);
 
 								    var the_email = comments[key].email.toLowerCase();
 
@@ -54,9 +50,6 @@ module.exports = {
 								  }
 								}
 
-								console.log('\nThe Comments:\n');
-								// console.log(comments);
-								console.log('\n\n');
 
 								viewModel.comments = comments;
 								console.log(comments.length+' comments found');
@@ -68,6 +61,7 @@ module.exports = {
 
 							}
 						});
+						
 
 					// save the updated model
 					image.save();
@@ -142,8 +136,6 @@ module.exports = {
 
 		};
 
-		console.log(req.params);
-
 
 		//find the image using the url 
 		Models.Image.findOne({ filename: { $regex: req.params.image_id } },
@@ -178,10 +170,8 @@ module.exports = {
 								  }
 								}
 
-								// console.log(comments);
-
 								viewModel.comments = comments;
-								console.log(comments.length+' comments found');
+								// console.log(comments.length+' comments found');
 
 								stats(viewModel, function(viewModel){
 									res.render('image', viewModel);
@@ -199,8 +189,6 @@ module.exports = {
 					
 				} else {
 					//if no image, return to index
-
-					// console.log('\nImage Not FOund Bro!\n');
 					res.redirect('/');
 				}
 			});
@@ -222,7 +210,6 @@ module.exports = {
 				if (err) { 
 					throw err; 
 				} else {
-					// console.log('Successful Comment');
 					res.redirect('/images/'+newComment.image_id);
 				}
 			});
