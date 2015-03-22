@@ -4,20 +4,29 @@
 
 
 	<div class="center">
-		<div class="panel panel-default">
-		
-			<h2 class="heading-line"><span>All Images</span></h2>
+
+		{{#if images}}
+
+			<div id="home-gallery" class="panel panel-default">
 			
-			<div class="tile-section">
+				<h2 class="heading-line"><span>All Images</span></h2>
+				
+				<div class="tile-section">
 
 
-				{{#each images}}
-					<a class="a-tile" href="/images/{{ uniqueID }}" style="background-image: url('/public/upload/{{filename}}');">
-					
-					</a>
-				{{/each}}
+					{{#each images}}
+						<a class="a-tile" href="/images/{{ uniqueID }}" style="background-image: url('/public/upload/{{filename}}');">
+							<button class="cta-btn remove-image" data-image-id="{{ uniqueID }}" data-ajax-url="/images/{{ uniqueID }}/remove">
+								<span>Delete Image</span>
+							</button>
+						</a>
+
+						
+					{{/each}}
+				</div>
 			</div>
-		</div>
+
+		{{/if}}
 
 
 		<div id="upload-form">
@@ -93,17 +102,3 @@
 		
 	</div>
 
-
-	<script>
-
-
-
-
-			jQuery(document).ready(function($){
-
-
-				// console.log('/images/{{image_id}}/like');
-
-			});
-
-	</script>

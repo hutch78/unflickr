@@ -76,6 +76,7 @@ module.exports = {
 			});
 		},
 	create: function(req, res) {
+
 		var saveImage = function() {
 			//info for creating a unique identifier
 			var possible = 'abcdefghijklmnopqrstuvwxyz0123456789',
@@ -219,5 +220,53 @@ module.exports = {
 		saveComment();
 
 
-	}
+	},
+	destroy: function(req, res) {
+
+		var viewModel = {
+			image: {},
+			comments: {},
+			sidebar: {}
+
+		};
+
+		var responseModel = {}
+
+		var query = Models.Image.findOne({ filename: { $regex: req.params.image_id } });
+
+		var comments = Models.Comment.find({image_id: {$regex: req.params.image_id } });
+
+
+
+		query.remove(function(arg1, data){
+
+			responseModel.num_images = data;
+
+			comments.remove(function(err, data){
+
+				if(err){
+					console.log('err = '+err);
+				}
+
+				if(data){
+
+					responseModel.num_comments = data;
+
+					
+				}
+
+			});
+
+			res.contentType('json');
+			res.send(responseModel);
+
+
+
+		});
+
+		
+
+
+
+	},
 };

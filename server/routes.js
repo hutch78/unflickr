@@ -11,6 +11,7 @@ module.exports.initialize = function(app, router) {
 	app.post('/images', image.create);
 	app.post('/images/:image_id/like', image.like);
 	app.post('/images/:image_id/comment', image.comment);
+	app.post('/images/:image_id/remove', image.destroy);
 	
 	app.use('/', router);
 };

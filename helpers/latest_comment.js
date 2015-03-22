@@ -4,8 +4,6 @@ var Models = require('../models'),
 
 module.exports = function(viewModel, callback){
 
-	console.log('latest_comment reached');
-
 	Models.Comment.find()
 		.sort({timestamp: -1})
 		.limit(1)
