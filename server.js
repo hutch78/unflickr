@@ -3,6 +3,12 @@ var config = require('./server/configure');
 var mongoose = require('mongoose');
 
 var app = express();
+
+// - - Passport
+var passport = require('./server/passport');
+passport = passport();
+
+
 //sets the default port for our server
 app.set('port', process.env.PORT || 3000);
 //sets the directory for views (pages)
