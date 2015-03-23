@@ -70,7 +70,7 @@ module.exports.initialize = function(app, router) {
 	  passport.authenticate('facebook', { failureRedirect: '/login' }),
 	  function(req, res) {
 
-	
+		req.flash('info', 'Successfully logged in through facebook');
 
 	    res.redirect('/');
 	  });
