@@ -19,4 +19,5 @@ module.exports = function() {
 		});
 		//*****requires the module for authenticating based on our local rules
 		require('./.strategies/local.js')();
+		require('./.strategies/facebook.js')();
 	};
