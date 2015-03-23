@@ -27,7 +27,13 @@ var userSchema = new Schema({
 	provider: {
 		type: String,
 		required: 'Provider is required'
-	}
+	},
+	facebook: {
+        id           : String,
+        token        : String,
+        email        : String,
+        name         : String
+    }
 });
 
 userSchema.pre('save', function(next) {

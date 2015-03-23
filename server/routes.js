@@ -51,8 +51,12 @@ module.exports.initialize = function(app, router) {
 	//   redirecting the user to facebook.com.  After authorization, Facebook will
 	//   redirect the user back to this application at /auth/facebook/callback
 	app.get('/auth/facebook',
-	  passport.authenticate('facebook'),
+	  passport.authenticate('facebook', { scope : 'email' }),
 	  function(req, res){
+
+	  	console.log(req);
+	  	console.log(res);
+
 	    // The request will be redirected to Facebook for authentication, so this
 	    // function will not be called.
 	  });
@@ -65,6 +69,10 @@ module.exports.initialize = function(app, router) {
 	app.get('/auth/facebook/callback', 
 	  passport.authenticate('facebook', { failureRedirect: '/login' }),
 	  function(req, res) {
+
+	  	console.log(req);
+	  	console.log(res);
+
 	    res.redirect('/');
 	  });
 
@@ -73,7 +81,7 @@ module.exports.initialize = function(app, router) {
 	  res.redirect('/');
 	});
 
-	
+
 	// Simple route middleware to ensure user is authenticated.
 	//   Use this route middleware on any resource that needs to be protected.  If
 	//   the request is authenticated (typically via a persistent login session),
