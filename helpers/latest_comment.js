@@ -19,7 +19,7 @@ module.exports = function(viewModel, callback){
 
 				callback(viewModel);
 
-				console.log(viewModel);
+				// console.log(viewModel);
 
 			}
 		});

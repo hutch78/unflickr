@@ -23,12 +23,34 @@ var getErrorMessage = function(err) {
 	return message;
 };
 exports.renderSignin = function(req,res,next) {
+
+	console.log('\n user.js | Req.user:');
+	console.log(req.user);
+	console.log('\n');
+	
 	if (!req.user) {
+		console.log('\n user.js | Req.flash:');
+		console.log(req.flash('info'));
+		console.log('\n');
+
+		console.log('\ user.js | Req.session:');
+		console.log(req.session);
+		console.log('\n');
+
 		res.render('signin', {
 			title: 'Sign-in',
-			messages: req.flash('error') || req.flash('info')
+			messages: req.flash('info')
 		});
 	} else {
+
+
+		console.log('\n Login Success');
+		console.log('\n');
+
+		console.log('\n NULL Req.user:');
+		console.log(req.user);
+		console.log('\n');
+
 		return res.redirect('/');
 	}
 };
@@ -45,6 +67,13 @@ exports.renderSignup = function(req,res,next) {
 };
 //makes a new local user from the signup information
 exports.signup = function(req, res,next) {
+
+	// Nothing is being returned
+	console.log('\Req.flash:');
+	console.log(req.flash);
+	console.log('\n');
+
+
 	if (!req.user) {
 		var user = new User(req.body);
 		var message = null;
@@ -53,6 +82,11 @@ exports.signup = function(req, res,next) {
 		
 		user.save(function(err) {
 			if (err) {
+
+				console.log('\nError:');
+				console.log(err);
+				console.log('\n');
+
 				var message = getErrorMessage(err);
 				req.flash('error', message);
 				return res.redirect('/signup');
@@ -70,5 +104,6 @@ exports.signup = function(req, res,next) {
 //sends a logout request and reloads the main page
 exports.signout = function(req,res) {
 	req.logout();
+	req.flash('info', 'You have been signed out.');
 	res.redirect('/');
 };

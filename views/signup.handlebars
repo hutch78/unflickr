@@ -1,0 +1,64 @@
+<div class="center">
+	<div class="panel-heading">
+		<h2 class="panel-title">
+			Sign Up
+		</h2>
+	</div>
+
+	<form method="post" action="/signup" enctype="application/x-www-form-urlencoded">
+		
+		<fieldset>
+
+			<legend>Sign Up</legend>
+
+			<div class="inner">
+
+				<div class="left">
+
+					<div class="form-row">
+						<label class="form-label" for="username">
+							Username:
+							<div>
+								<input class="form-control" type="text" name="username">
+							</div>
+						</label>
+					</div>
+
+					<div class="form-row">
+						<label class="form-label" for="email">
+							Email:
+							<div>
+								<input class="form-control" type="email" name="email">
+							</div>
+						</label>
+					</div>
+
+					<div class="form-row">
+						<label class="form-label" for="password">
+							Password:
+							<div>
+								<input class="form-control" type="text" name="password">
+							</div>
+						</label>
+					</div>
+					
+				</div>
+
+				<div class="clear"></div>
+
+
+				<div class="sub-row">
+					<button type="submit" id="login-btn" class="cta-btn" type="button">
+						<span>
+							<i class="fa fa-cloud-upload "></i>
+							Sign Up
+						</span>
+					</button>
+				</div>
+				
+			</div>{{!-- end inner --}}
+
+		</fieldset>
+
+	</form>{{!-- end form --}}
+	

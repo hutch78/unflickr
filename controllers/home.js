@@ -7,11 +7,17 @@ module.exports = {
 
 	index: function(req, res) {
 
+		// returns user on successful login and redirect
+		console.log('\nhome.index: Req.user:');
+		console.log(req.user);
+		console.log('\n');
 		
 		var viewModel = {
 			images: {},
 			sidebar: {},
-			latest_comment: {}
+			latest_comment: {},
+			userName: req.user ? req.user.username : '',
+			messages: req.flash('info') || req.flash('success')
 		}
 
 		imageModel.find(function(err, images) {
@@ -21,7 +27,14 @@ module.exports = {
 			stats(viewModel, function(viewModel){
 				latest_comment(viewModel, function(viewModel){
 
-					// console.log(viewModel);
+					console.log('\nhom.index userName:');
+					console.log(viewModel.userName);
+					console.log('\n');
+
+					console.log('\nhom.index messages:');
+					console.log(viewModel.messages);
+					console.log('\n');
+
 
 					res.render('index', viewModel);
 				})

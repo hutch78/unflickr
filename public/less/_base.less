@@ -138,6 +138,21 @@ label {
 			color: @accent1;
 		}
 	}
+
+	&.remove-image {
+		opacity: 0;
+		.ease1;
+		border: none;
+		top: 10px;
+		right: 10px;
+		position: absolute;
+		i {
+			font-size: 37px;
+			padding: 10px;
+		}
+		background-color: @neutral1;
+		color: white;
+	}
 }
 
 
@@ -204,6 +219,63 @@ label {
 		top: 50%;
 		margin-top: -2px;
 		background-color: @accent1;
+	}
+}
+
+/* =- -= =- -= =- -= =--= =- -= =- -= =--= =-  -= =- -= =--= =- -= =--= =- 
+
+	Flash Bar ---------------------------------------------------
+
+=- -= =--= =- -= = --= =- -= =--= =-  -= =- -= =--= =- -= =- -= =- */
+
+#flash-bar {
+	opacity: 0;
+	.ease2;
+	position: absolute;
+	top: 0; 
+	width: 100%;
+	background-color: darken(@neutral1,20%);
+	text-align: center;
+
+	&.shown {
+		opacity: 1;
+	}
+	p {
+		color: @accent2;
+	}
+
+}
+
+#sign-in-wrapper {
+	margin-top: -44px;
+}
+
+#sign-in-bar{
+	margin-bottom: 2%;
+	overflow: hidden;
+	position: relative;
+	.cta-btn {
+		text-align: center;
+	}
+
+
+	.welcome-line {
+		margin-top: 10px;
+		text-align: right;
+	}
+
+	@media @desktop {
+		width: 50%;
+		float: right;
+		.left, .right {
+			width: 45%;
+		}
+		.left {
+			float: left;
+		}
+		.right {
+			float: right;
+		}
 	}
 }
 
@@ -348,6 +420,10 @@ header {
 				-o-transform: translate3D(0,0,0);
 				transform: translate3D(0,0,0);
 			}
+
+			.remove-image {
+				opacity: 1;
+			}
 		}
 
 	}
@@ -366,7 +442,7 @@ input, textarea, button {
 	resize: none!important;
 }
 
-input[type="text"], textarea {
+input[type="text"], input[type="email"], textarea {
 	width: 100%;
 	padding: 20px;
 	.prox(100);

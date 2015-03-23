@@ -2,7 +2,8 @@
 <html lang="en">
     <head>
         <title>UnFlickr</title>
-        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="/public/css/styles.css">
 
     
@@ -12,6 +13,20 @@
 
     </head>
     <body>
+
+
+        <div id="flash-bar">
+           <div class="center">
+                
+            {{#if messages}}
+               <p>{{messages}}</p>
+            {{else}}
+                {{#if error}}
+                    <p>{{error}}</p>
+                {{/if}}
+            {{/if}}
+           </div>
+        </div>
 
         <article id="wrap">
 
@@ -25,7 +40,57 @@
 
                     {{> stats this }}
 
+
+
                 </div>
+
+
+                {{#if userName}}
+
+                    <div class="center">
+                       
+                    </div>
+
+                    <div id="sign-in-wrapper" class="center">
+                        <div id="sign-in-bar">
+                            <div class="left">
+                                <h3 class="welcome-line">Sup, {{userName}}?</h3>
+                            </div>
+                            <div class="right">
+                                
+                                {{!-- im logged in  --}}
+                                <a href="/signout" class="cta-btn">
+                                    <span>Log Out</span>
+                                </a>
+                            </div>
+
+                            <div class="clear"></div>
+                            
+                        </div>
+                    </div>
+
+                  
+                {{else}}
+
+                    <div id="sign-in-wrapper" class="center">
+                        <div id="sign-in-bar">
+                            <div class="left">
+                            <a href="/signin" class="cta-btn">
+                                <span>Sign In</span>
+                            </a>
+                            </div>
+                            <div class="right">
+                                <a href="/signup" class="cta-btn">
+                                    <span>Sign Up</span>
+                                </a>
+                            </div>
+
+                            <div class="clear"></div>
+                            
+                        </div>
+                    </div>
+
+                {{/if}}
             </header>
 
             <section id="main">

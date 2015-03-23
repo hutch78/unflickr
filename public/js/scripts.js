@@ -53,4 +53,13 @@ jQuery(document).ready(function($){
 
 	});
 
+	if($('#flash-bar .error') || $('#flash-bar .messages')){
+		setTimeout(function() {
+			$('#flash-bar').addClass('shown');
+			setTimeout(function() {
+				$('#flash-bar').removeClass('shown');
+			}, 5000);
+		}, 500);
+	}
+
 });

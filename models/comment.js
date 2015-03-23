@@ -15,7 +15,7 @@ var CommentSchema = new Schema({
 
 CommentSchema.virtual('uniqueID')
 	.get(function() {
-		console.log('\n\nuniqueID:'+this.image_id+'\n\n');
+		// console.log('\n\nuniqueID:'+this.image_id+'\n\n');
 		return this.image_id;
 	});
 

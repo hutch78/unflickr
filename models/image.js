@@ -14,7 +14,7 @@ var ImageSchema = new Schema({
 
 ImageSchema.virtual('uniqueID')
 	.get(function() {
-		console.log('\n\nuniqueID:'+this.filename.replace(path.extname(this.filename), '')+'\n\n');
+		// console.log('\n\nuniqueID:'+this.filename.replace(path.extname(this.filename), '')+'\n\n');
 		return this.filename.replace(path.extname(this.filename), '');
 	});
 	
