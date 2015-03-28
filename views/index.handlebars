@@ -31,76 +31,80 @@
 		{{/if}}
 
 
-		<div id="upload-form">
-			
-			<form method="post" action="/images" enctype="multipart/form-data">
+		{{#if userName}}
+
+			<div id="upload-form">
 				
-				<fieldset>
+				<form method="post" action="/images" enctype="multipart/form-data">
+					
+					<fieldset>
 
-					<legend>Upload</legend>
+						<legend>Upload</legend>
 
-					<div class="inner">
+						<div class="inner">
 
-						<div class="left">
+							<div class="left">
 
-							<div class="form-row">
-								<label class="form-label" for="title">
-									Title:
-									<div>
-										<input class="form-control" type="text" name="title">
-									</div>
-								</label>
+								<div class="form-row">
+									<label class="form-label" for="title">
+										Title:
+										<div>
+											<input class="form-control" type="text" name="title">
+										</div>
+									</label>
+								</div>
+
+								<div class="form-row">
+									<label class="form-label" for="description">
+										Description:
+										<div>
+											<textarea class="form-control" name="description" rows="2"></textarea>
+										</div>
+									</label>
+								</div>
+								
 							</div>
 
-							<div class="form-row">
-								<label class="form-label" for="description">
-									Description:
-									<div>
-										<textarea class="form-control" name="description" rows="2"></textarea>
-									</div>
-								</label>
+							<div class="right">
+								<div class="form-row">
+
+									<label class="form-label">
+										Browse FIles:
+										<div class="outer">
+											<span class="browse-box">
+												<span class="inner">
+													<i class="fa fa-upload"></i>
+												</span>
+											</span>
+										</div>
+										<input class="form-control file" type="file" name="file" 
+											accept="image/jpeg,image/pjpeg,image/gif,image/png">
+									</label>
+								</div>
+							</div>
+
+							<div class="clear"></div>
+
+
+							<div class="sub-row">
+								<button type="submit" id="login-btn" class="cta-btn" type="button">
+									<span>
+										<i class="fa fa-cloud-upload "></i> 
+										Upload Image
+									</span>
+								</button>
 							</div>
 							
-						</div>
+						</div>{{!-- end inner --}}
 
-						<div class="right">
-							<div class="form-row">
+					</fieldset>
 
-								<label class="form-label">
-									Browse FIles:
-									<div class="outer">
-										<span class="browse-box">
-											<span class="inner">
-												<i class="fa fa-upload"></i>
-											</span>
-										</span>
-									</div>
-									<input class="form-control file" type="file" name="file" 
-										accept="image/jpeg,image/pjpeg,image/gif,image/png">
-								</label>
-							</div>
-						</div>
+				</form>{{!-- end form --}}
 
-						<div class="clear"></div>
+			</div>
 
 
-						<div class="sub-row">
-							<button type="submit" id="login-btn" class="cta-btn" type="button">
-								<span>
-									<i class="fa fa-cloud-upload "></i> 
-									Upload Image
-								</span>
-							</button>
-						</div>
-						
-					</div>{{!-- end inner --}}
-
-				</fieldset>
-
-			</form>{{!-- end form --}}
-
-		</div>
-
+		{{/if}}
 		
 	</div>
 
