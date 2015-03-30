@@ -11,7 +11,8 @@ module.exports = {
 		var viewModel = {
 			image: {},
 			comments: {},
-			sidebar: {}
+			sidebar: {},
+			userName: req.user ? req.user.username : ''
 
 		};
 
