@@ -39,7 +39,7 @@ exports.renderSignin = function(req,res,next) {
 
 		res.render('signin', {
 			title: 'Sign-in',
-			messages: req.flash('info')
+			messages: req.flash('error')
 		});
 	} else {
 

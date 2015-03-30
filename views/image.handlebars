@@ -45,59 +45,68 @@
     </div>
     
 
-    <div id="comment-form-wrapper">
-        <form id="comments-form" method="POST" action="/images/{{ image.uniqueID }}/comment">
+    {{#if userName}}
+      <div id="comment-form-wrapper">
+          <form id="comments-form" method="POST" action="/images/{{ image.uniqueID }}/comment">
 
-            <fieldset>
+              <fieldset>
 
-                <legend>Comment</legend>
+                  <legend>Comment</legend>
 
-                <div class="inner">
+                  <div class="inner">
 
-                    <div class="form-row">
-                        <label class="form-label" for="title">
-                            Name:
-                            <div>
-                                <input class="form-control" type="text" name="name">
-                            </div>
-                        </label>
-                    </div>
+                      <div class="form-row">
+                          <label class="form-label" for="title">
+                              Name:
+                              <div>
+                                  <input class="form-control" type="text" name="name">
+                              </div>
+                          </label>
+                      </div>
 
-                    <div class="form-row">
-                        <label class="form-label" for="title">
-                            Email:
-                            <div>
-                                 <input class="form-control" type="text" name="email">
-                            </div>
-                        </label>
-                    </div>
+                      <div class="form-row">
+                          <label class="form-label" for="title">
+                              Email:
+                              <div>
+                                   <input class="form-control" type="text" name="email">
+                              </div>
+                          </label>
+                      </div>
 
-                    <div class="form-row">
-                        <label class="form-label" for="description">
-                            Comment:
-                            <div>
-                                <textarea class="form-control" name="comment" rows="2"></textarea>
-                            </div>
-                        </label>
-                    </div>
-                    
-                    <div class="sub-row">
-                        <button type="submit" id="login-btn" class="cta-btn" type="button">
-                            <span>
-                                <i class="fa fa-cloud-upload "></i> 
-                                Post Comment
-                            </span>
-                        </button>
-                    </div>
-         
-                </div>{{!-- end inner --}}
+                      <div class="form-row">
+                          <label class="form-label" for="description">
+                              Comment:
+                              <div>
+                                  <textarea class="form-control" name="comment" rows="2"></textarea>
+                              </div>
+                          </label>
+                      </div>
+                      
+                      <div class="sub-row">
+                          <button type="submit" id="login-btn" class="cta-btn" type="button">
+                              <span>
+                                  <i class="fa fa-cloud-upload "></i> 
+                                  Post Comment
+                              </span>
+                          </button>
+                      </div>
+           
+                  </div>{{!-- end inner --}}
 
-            </fieldset>
+              </fieldset>
 
 
-        </form>
+          </form>
 
-    </div>
+      </div>
+      
+    {{else}}
+
+      <h2 class="signin-link">Please <a href="/signin">Sign In</a> to upload images or post comments.</h2>
+
+    {{/if}}
+
+    
 
 
     <div id="comments-list">

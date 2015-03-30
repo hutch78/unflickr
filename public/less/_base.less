@@ -85,6 +85,19 @@ h2 {
 		text-transform: uppercase;
 		
 	}
+
+	&.signin-link {
+		color: @n1-t2;
+		padding: 40px 0;
+		margin: 40px 0;
+		border-top: 2px dashed @n1-t2;
+		border-bottom: 2px dashed @n1-t2;
+		text-align: center;
+	}
+
+	a {
+		color: @accent2;
+	}
 }
 
 h3 {
@@ -276,6 +289,11 @@ label {
 		.right {
 			float: right;
 		}
+		.sign-in-nav-item {
+			.rowMachine(3,2%);
+			float: left;
+			margin-bottom: 2%;
+		}
 	}
 }
 
@@ -442,7 +460,8 @@ input, textarea, button {
 	resize: none!important;
 }
 
-input[type="text"], input[type="email"], textarea {
+input[type="text"], input[type="email"], textarea,
+input[type="password"] {
 	width: 100%;
 	padding: 20px;
 	.prox(100);
